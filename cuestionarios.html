@@ -4,69 +4,46 @@
   <meta charset="UTF-8"/>
   <title>Kair · Crear perfil</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Grupo T: Umami Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="8c7efe3e-851a-48e5-860c-4e7d2a115a6b"></script>
   <style>
     :root {
-      --bg: #FAFAF8;
-      --card: #ffffff;
-      --accent: #2ac6a8;
-      --accent-dark: #1B3A2A;
-      --text-main: #111820;
-      --text-muted: #6b7280;
-      --text-light: #9ca3af;
-      --border: #e8e8e4;
-      --border-soft: #f0f0ec;
-      --danger: #b91c1c;
-      --danger-soft: #fef2f2;
+      --bg: #FAFAF8; --card: #ffffff; --accent: #2ac6a8; --accent-dark: #1B3A2A;
+      --text-main: #111820; --text-muted: #6b7280; --text-light: #9ca3af;
+      --border: #e8e8e4; --border-soft: #f0f0ec;
+      --danger: #b91c1c; --danger-soft: #fef2f2;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      padding: 40px 16px 60px;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg); color: var(--text-main);
+      display: flex; justify-content: center;
+      padding: 40px 16px 60px; -webkit-font-smoothing: antialiased;
     }
     .shell { width: 100%; max-width: 720px; }
-
-    /* HEADER */
     .header { margin-bottom: 32px; }
     .kair-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
     .kair-wordmark { font-size: 1rem; font-weight: 200; letter-spacing: 0.28em; color: var(--text-main); }
     h1 { font-size: 1.6rem; font-weight: 300; color: var(--text-main); margin-bottom: 8px; letter-spacing: -0.01em; }
     .subtitle { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 560px; }
-
-    /* LANG SELECTOR */
     .lang-row { display: flex; justify-content: flex-end; margin-bottom: 16px; }
     .lang-select { border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 0.78rem; font-family: inherit; background: var(--card); color: var(--text-main); cursor: pointer; outline: none; }
     .lang-select:focus { border-color: var(--accent-dark); }
-
-    /* CARD */
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 28px 32px 32px;
-      position: relative;
-      overflow: hidden;
-    }
+    .card { background: var(--card); border-radius: 16px; border: 1px solid var(--border); padding: 28px 32px 32px; position: relative; overflow: hidden; }
     @media(max-width:640px){ .card { padding: 20px 18px 24px; } }
-
-    /* PROGRESS */
     .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
     .progress-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-light); }
     .progress-steps { display: flex; align-items: center; gap: 6px; }
     .progress-step-label { font-size: 0.72rem; color: var(--text-muted); margin-right: 8px; }
     .step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: 1px solid #ddd; }
     .step-dot.active { background: var(--accent-dark); border-color: var(--accent-dark); }
-
-    /* STEPS */
+    /* Grupo X: pasos opcionales marcados diferente */
+    .step-dot.optional { background: var(--border); border-color: #ccc; opacity: 0.6; }
+    .step-dot.optional.active { background: var(--accent); border-color: var(--accent); opacity: 1; }
+    .step-dot.done { background: var(--accent); border-color: var(--accent); }
     .step { display: none; animation: fadeUp 0.16s ease-out; }
     .step.active { display: block; }
     @keyframes fadeUp { from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);} }
-
-    /* FIELDSETS */
     fieldset { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px 18px; margin-bottom: 16px; background: var(--bg); }
     legend { padding: 0 6px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-light); }
     .field-header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; }
@@ -83,84 +60,38 @@
     .checkboxes label { font-size: 0.8rem; cursor: pointer; color: var(--text-main); display: flex; align-items: center; gap: 5px; min-width: 200px; }
     input[type="radio"] { accent-color: var(--accent-dark); cursor: pointer; }
     input[type="checkbox"] { accent-color: var(--accent-dark); cursor: pointer; }
-    input[type="text"], input[type="number"] {
-      background: var(--card);
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      color: var(--text-main);
-      font-size: 0.84rem;
-      min-width: 160px;
-      font-family: inherit;
-      outline: none;
+    input[type="text"], input[type="number"], input[type="email"] {
+      background: var(--card); border-radius: 6px; border: 1px solid var(--border);
+      padding: 8px 12px; color: var(--text-main); font-size: 0.84rem;
+      min-width: 160px; font-family: inherit; outline: none;
     }
-    input[type="text"]:focus, input[type="number"]:focus { border-color: var(--accent-dark); }
-    .info-box {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: rgba(42,198,168,0.05);
-      border-left: 2px solid var(--accent);
-      font-size: 0.76rem;
-      color: #065f46;
-      line-height: 1.5;
-    }
-    .help-box {
-      display: none;
-      border-radius: 8px;
-      padding: 10px 12px;
-      margin-top: 10px;
-      background: var(--danger-soft);
-      border: 1px solid rgba(185,28,28,0.15);
-      color: #7f1d1d;
-      font-size: 0.78rem;
-      line-height: 1.6;
-    }
-    .callout {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: rgba(42,198,168,0.05);
-      border-left: 2px solid var(--accent);
-      font-size: 0.78rem;
-      color: #065f46;
-      line-height: 1.5;
-    }
+    input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus { border-color: var(--accent-dark); }
+    .info-box { margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: rgba(42,198,168,0.05); border-left: 2px solid var(--accent); font-size: 0.76rem; color: #065f46; line-height: 1.5; }
+    .help-box { display: none; border-radius: 8px; padding: 10px 12px; margin-top: 10px; background: var(--danger-soft); border: 1px solid rgba(185,28,28,0.15); color: #7f1d1d; font-size: 0.78rem; line-height: 1.6; }
+    .callout { margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: rgba(42,198,168,0.05); border-left: 2px solid var(--accent); font-size: 0.78rem; color: #065f46; line-height: 1.5; }
     .sensitive-label { color: #7f1d1d; }
-
-    /* NAV */
+    /* Grupo X: optional banner */
+    .optional-banner { margin-bottom: 16px; padding: 10px 14px; border-radius: 8px; background: rgba(42,198,168,0.05); border: 1px solid rgba(42,198,168,0.2); font-size: 0.78rem; color: #065f46; line-height: 1.5; display: none; }
+    .optional-banner.visible { display: block; }
     .nav-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
     .nav-btns { display: flex; gap: 8px; }
-    .btn {
-      border-radius: 6px;
-      padding: 9px 20px;
-      font-size: 0.82rem;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: inherit;
-      letter-spacing: 0.03em;
-      transition: background 0.15s;
-    }
+    .btn { border-radius: 6px; padding: 9px 20px; font-size: 0.82rem; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: inherit; letter-spacing: 0.03em; transition: background 0.15s; }
     .btn-back { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); }
     .btn-back:hover { border-color: var(--accent-dark); color: var(--accent-dark); }
     .btn-next { background: var(--accent-dark); color: #fff; font-weight: 500; }
     .btn-next:disabled { opacity: 0.5; cursor: default; }
     .btn-next:hover:not(:disabled) { background: #142d20; }
+    /* Grupo X: botón saltar paso opcional */
+    .btn-skip { background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.78rem; }
+    .btn-skip:hover { border-color: var(--text-muted); }
     .status-text { font-size: 0.72rem; color: var(--text-light); }
     .status-text.ok { color: var(--accent); }
     .status-text.error { color: var(--danger); }
-
-    /* THANKS */
     .thankyou { display: none; text-align: center; padding: 48px 24px; }
     .thankyou-title { font-size: 1.4rem; font-weight: 300; margin-bottom: 10px; color: var(--text-main); }
     .thankyou-body { font-size: 0.85rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 20px; line-height: 1.7; }
     .uid-display { font-size: 1.5rem; font-weight: 400; color: var(--accent-dark); margin: 16px 0; padding: 14px 24px; background: rgba(27,58,42,0.05); border-radius: 10px; letter-spacing: 0.1em; display: inline-block; }
     .btn-goto { display: inline-block; margin-top: 8px; padding: 10px 24px; border-radius: 6px; background: var(--accent-dark); color: #fff; font-weight: 500; text-decoration: none; font-size: 0.84rem; letter-spacing: 0.04em; }
-
-    /* SAFETY MODAL */
     .modal-backdrop { position: absolute; inset: 0; background: rgba(17,24,32,0.35); display: none; align-items: center; justify-content: center; z-index: 20; padding: 20px; }
     .modal-backdrop.active { display: flex; }
     .modal-box { max-width: 420px; width: 100%; background: var(--card); border-radius: 14px; padding: 22px 24px; border: 1px solid rgba(185,28,28,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
@@ -189,7 +120,7 @@
       <span class="kair-wordmark">kair</span>
     </div>
     <h1 id="headerTitle">Crea tu perfil</h1>
-    <p class="subtitle" id="headerSubtitle">Completa los cuestionarios para recibir recomendaciones adaptadas a ti. Solo tardarás unos minutos y únicamente tendrás que hacerlo una vez.</p>
+    <p class="subtitle" id="headerSubtitle">Completa el formulario para recibir recomendaciones adaptadas a ti.</p>
   </header>
 
   <main class="card">
@@ -213,13 +144,16 @@
         <span class="progress-step-label" id="stepLabel">Paso 1 de 7</span>
         <span class="step-dot active" data-dot="0"></span>
         <span class="step-dot" data-dot="1"></span>
-        <span class="step-dot" data-dot="2"></span>
-        <span class="step-dot" data-dot="3"></span>
-        <span class="step-dot" data-dot="4"></span>
-        <span class="step-dot" data-dot="5"></span>
-        <span class="step-dot" data-dot="6"></span>
+        <span class="step-dot optional" data-dot="2"></span>
+        <span class="step-dot optional" data-dot="3"></span>
+        <span class="step-dot optional" data-dot="4"></span>
+        <span class="step-dot optional" data-dot="5"></span>
+        <span class="step-dot optional" data-dot="6"></span>
       </div>
     </div>
+
+    <!-- Grupo X: banner pasos opcionales -->
+    <div class="optional-banner" id="optionalBanner" id="optional_banner_text"></div>
 
     <form id="kairForm">
 
@@ -272,10 +206,16 @@
             <label class="q-label" for="pais" id="pais_label">País de residencia</label>
             <input id="pais" name="pais" type="text"/>
           </div>
+          <!-- Grupo I: email opcional para recuperación de ID -->
+          <div class="question">
+            <label class="q-label" for="emailField" id="email_label">Email (opcional)<span style="font-size:0.72rem;color:var(--text-muted);margin-left:4px;" id="email_help_inline"></span></label>
+            <input id="emailField" name="email" type="email" style="width:100%;max-width:360px;"/>
+            <p style="font-size:0.74rem;color:var(--text-muted);margin-top:6px;line-height:1.5;" id="email_help">Añade tu email para poder recuperar tu ID si lo pierdes. Solo se usa para eso, nunca para marketing.</p>
+          </div>
         </fieldset>
       </section>
 
-      <!-- STEP 2: SALUD Y MEDICACIÓN (B3) -->
+      <!-- STEP 2: SALUD Y MEDICACIÓN -->
       <section class="step" data-step="2">
         <fieldset>
           <legend id="leg_salud">Salud</legend>
@@ -327,7 +267,7 @@
               <input type="text" id="med_otras" style="width:100%;max-width:420px;"/>
             </div>
           </div>
-          <div class="info-box" id="salud_info_box">Esta información solo se usa para evitar recomendaciones que puedan interactuar con tu medicación. Kair no es un servicio médico y esta información no se comparte con terceros.</div>
+          <div class="info-box" id="salud_info_box">Esta información solo se usa para evitar recomendaciones que puedan interactuar con tu medicación.</div>
         </fieldset>
       </section>
 
@@ -360,7 +300,7 @@
               <label><input type="radio" name="cse_s1" value="2"/>2 · <span id="cse_s1_2">A menudo</span></label>
               <label><input type="radio" name="cse_s1" value="3"/>3 · <span id="cse_s1_3">Casi siempre</span></label>
             </div>
-            <div id="helpBox" class="help-box" id="cse_helpbox">Si estás pasándolo mal, no tienes que llevarlo solo/a. En España puedes llamar al <strong>024</strong>, línea gratuita y confidencial disponible las 24 horas.</div>
+            <div id="helpBox" class="help-box">Si estás pasándolo mal, no tienes que llevarlo solo/a. En España puedes llamar al <strong>024</strong>, línea gratuita y confidencial disponible las 24 horas.</div>
           </div>
         </fieldset>
       </section>
@@ -440,15 +380,17 @@
         <div class="nav-btns">
           <button type="button" class="btn btn-back" id="prevBtn">Atrás</button>
           <button type="button" class="btn btn-next" id="nextBtn">Siguiente</button>
+          <!-- Grupo X: botón saltar paso opcional -->
+          <button type="button" class="btn btn-skip" id="skipBtn" style="display:none;" onclick="skipOptionalStep()">Saltar</button>
         </div>
-        <span id="statusText" class="status-text" id="statusMsg">Tus datos se guardan de forma segura y anónima.</span>
+        <span id="statusText" class="status-text">Tus datos se guardan de forma segura y anónima.</span>
       </div>
     </form>
 
     <!-- GRACIAS -->
     <div class="thankyou" id="thankyou">
       <div class="thankyou-title" id="thankyou_title">Perfil creado</div>
-      <p class="thankyou-body" id="thankyou_body1">Tu perfil Kair ha sido guardado correctamente. Este es tu ID personal — guárdalo, lo necesitarás cada vez que quieras acceder a tus recomendaciones.</p>
+      <p class="thankyou-body" id="thankyou_body1">Tu perfil Kair ha sido guardado correctamente.</p>
       <div class="uid-display" id="thankyouId"></div>
       <p class="thankyou-body" style="margin-top:8px;" id="thankyou_body2">Con este ID accedes a la app y ves tu evolución a lo largo del tiempo.</p>
       <a href="index.html" class="btn-goto" id="thankyou_btn">Ir a la app</a>
@@ -457,44 +399,52 @@
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════════
-// B2: Cargar claves desde /api/config (nunca hardcodeadas)
-// ══════════════════════════════════════════════════════════
-let SUPABASE_URL = '';
-let SUPABASE_ANON_KEY = '';
+// ════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════
+let SUPABASE_URL='', SUPABASE_ANON_KEY='';
 
-async function cargarConfig() {
-  try {
-    const r = await fetch('/api/config');
-    if (!r.ok) throw new Error('config error');
-    const cfg = await r.json();
-    SUPABASE_URL     = cfg.SUPABASE_URL     || '';
-    SUPABASE_ANON_KEY = cfg.SUPABASE_ANON_KEY || '';
-  } catch(e) {
-    console.error('Error cargando config:', e);
-  }
+async function cargarConfig(){
+  try{
+    const r=await fetch('/api/config');
+    if(!r.ok) throw new Error('config error');
+    const cfg=await r.json();
+    SUPABASE_URL=cfg.SUPABASE_URL||'';
+    SUPABASE_ANON_KEY=cfg.SUPABASE_ANON_KEY||'';
+  }catch(e){console.error('Error cargando config:',e);}
 }
 
-async function supabaseInsert(table, data) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+async function supabaseInsert(table,data){
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/${table}`,{
     method:'POST',
     headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`,'Prefer':'return=minimal'},
-    body: JSON.stringify(data)
+    body:JSON.stringify(data)
   });
-  if (!r.ok) { const e=await r.text(); throw new Error(e); }
+  if(!r.ok){const e=await r.text();throw new Error(e);}
   return true;
 }
 
-// ══════════════════════════════════════════════════════════
-// B1: INTERNACIONALIZACIÓN
-// ══════════════════════════════════════════════════════════
-const I18N_Q = {
-  es: {
+async function supabaseUpdate(table,filters,data){
+  let url=`${SUPABASE_URL}/rest/v1/${table}?`;
+  Object.entries(filters).forEach(([k,v])=>{url+=`${k}=eq.${encodeURIComponent(v)}&`;});
+  const r=await fetch(url,{
+    method:'PATCH',
+    headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`},
+    body:JSON.stringify(data)
+  });
+  if(!r.ok){const e=await r.text();throw new Error(e);}
+  return true;
+}
+
+// ════════════════════════════════════════
+// I18N (subset para cuestionarios)
+// ════════════════════════════════════════
+const I18N_Q={
+  es:{
     headerTitle:'Crea tu perfil',
-    headerSub:'Completa los cuestionarios para recibir recomendaciones adaptadas a ti. Solo tardarás unos minutos y únicamente tendrás que hacerlo una vez.',
-    progressLabel:'Progreso',
-    stepOf:'Paso {n} de {total}',
-    btnBack:'Atrás', btnNext:'Siguiente', btnSave:'Guardar perfil',
+    headerSub:'Completa el formulario para recibir recomendaciones adaptadas a ti. Solo tardarás unos minutos.',
+    progressLabel:'Progreso', stepOf:'Paso {n} de {total}',
+    btnBack:'Atrás', btnNext:'Siguiente', btnSave:'Guardar perfil', btnSkip:'Saltar este paso',
     statusDefault:'Tus datos se guardan de forma segura y anónima.',
     statusSaving:'Guardando perfil...', statusOk:'Perfil guardado correctamente.',
     errRequired:'Por favor, completa todas las preguntas obligatorias.',
@@ -502,18 +452,24 @@ const I18N_Q = {
     errDuplicate:'Este ID ya existe. Elige otro diferente.',
     errGeneral:'Error al guardar. Inténtalo de nuevo.',
     alertRequired:'Por favor, completa todas las preguntas obligatorias.',
-    // Step 0
-    leg_consent:'Consentimiento', consent_title:'Consentimiento informado', consent_badge:'Obligatorio',
-    consent_desc:'Kair recoge información sobre tu bienestar emocional, alimentación y personalidad para ofrecerte recomendaciones personalizadas. Tu participación es voluntaria, tus datos son anónimos y puedes retirar tu consentimiento en cualquier momento.',
-    consent_q:'¿Aceptas participar?', consent_yes:'Sí, acepto', consent_no:'No deseo participar',
-    // Step 1
+    // Grupo X
+    optional_banner_text:'Este paso es opcional. Puedes completarlo ahora o más tarde desde la app.',
+    step_just_id:'Solo necesitas el Paso 1 para entrar a la app. Los siguientes pasos mejoran tus recomendaciones y los puedes completar después.',
+    // Paso 1
     leg_general:'Datos generales', general_title:'Información básica', general_badge:'~1 minuto',
     uid_label:'Elige tu ID personal', uid_help:'Crea un código que solo tú conozcas. Lo usarás para acceder a la app cada día y ver tu evolución.',
     uid_placeholder:'Ej. IM2024A',
     edad_label:'Edad', genero_label:'Género',
     gen_h:'Hombre', gen_m:'Mujer', gen_nb:'No binario', gen_nd:'Prefiero no decirlo',
     pais_label:'País de residencia',
-    // Step 2 — Salud
+    // Grupo I
+    email_label:'Email (opcional)', email_help:'Añade tu email para poder recuperar tu ID si lo pierdes. Solo se usa para eso, nunca para marketing.',
+    email_help_inline:'para recuperar tu ID',
+    // Consentimiento
+    leg_consent:'Consentimiento', consent_title:'Consentimiento informado', consent_badge:'Obligatorio',
+    consent_desc:'Kair recoge información sobre tu bienestar emocional, alimentación y personalidad para ofrecerte recomendaciones personalizadas. Tu participación es voluntaria, tus datos son anónimos y puedes retirar tu consentimiento en cualquier momento.',
+    consent_q:'¿Aceptas participar?', consent_yes:'Sí, acepto', consent_no:'No deseo participar',
+    // Salud
     leg_salud:'Salud', salud_title:'Condiciones de salud', salud_badge:'Opcional',
     salud_desc:'Esta información es opcional y solo se usa para personalizar tus recomendaciones evitando posibles interacciones. Kair no es un servicio médico.',
     salud_q:'¿Tienes alguna condición de salud diagnosticada?',
@@ -529,8 +485,8 @@ const I18N_Q = {
     med_tir:'Medicación tiroidea', med_ibp:'IBP (omeprazol y similares)',
     med_none:'Ninguno', med_pref:'Prefiero no indicarlo',
     med_otras_label:'Otros medicamentos',
-    salud_info_box:'Esta información solo se usa para evitar recomendaciones que puedan interactuar con tu medicación. Kair no es un servicio médico y esta información no se comparte con terceros.',
-    // Step 3 — CSE
+    salud_info_box:'Esta información solo se usa para evitar recomendaciones que puedan interactuar con tu medicación.',
+    // CSE
     leg_cse:'Cuerpo y emoción', cse_title:'CSE-12 · Última semana', cse_badge:'12 ítems',
     cse_scale:'0 = Nunca · 1 = A veces · 2 = A menudo · 3 = Casi siempre',
     cse1_q:'1. He sentido mi cuerpo más tenso, rígido o contraído de lo habitual.',
@@ -553,7 +509,7 @@ const I18N_Q = {
     safetyP2:'En España puedes llamar al 024, línea gratuita y confidencial de atención a la conducta suicida, disponible las 24 horas.',
     safetyP3:'También puedes acudir a tu centro de salud o contactar con un profesional de la psicología.',
     safetyClose:'Cerrar',
-    // Step 4 — CPP
+    // CPP
     leg_cpp:'Personalidad', cpp_title:'CPP-10 · Perfil de personalidad', cpp_badge:'10 ítems',
     cpp_scale:'0 = Nada · 1 = Poco · 2 = Bastante · 3 = Mucho',
     cpp1_q:'1. Me gusta explorar ideas y mundos nuevos.',
@@ -566,7 +522,7 @@ const I18N_Q = {
     cpp8_q:'8. Soy directo/a y a veces poco paciente con los demás.',
     cpp9_q:'9. Suelo estar tranquilo/a ante las dificultades.',
     cpp10_q:'10. Me afectan mucho el estrés, las críticas o los cambios imprevistos.',
-    // Step 5 — CEA
+    // CEA
     leg_cea:'Alimentación', cea_title:'CEA-10 · Estilo alimentario', cea_badge:'10 ítems',
     cea_scale:'0 = Nunca · 1 = A veces · 2 = Frecuentemente · 3 = Siempre · Último mes',
     cea1_q:'1. He consumido fruta fresca casi cada día.',
@@ -580,7 +536,7 @@ const I18N_Q = {
     cea9_q:'9. He tomado refrescos azucarados o bebidas energéticas habitualmente.',
     cea10_q:'10. He tenido digestiones cómodas y sin molestias intensas.',
     cea_callout:'Perfil alimentario completado.',
-    // Step 6 — MAE
+    // MAE
     leg_mae:'Afinidades', mae_title:'MAE-12 · Mapa de afinidades emocionales', mae_badge:'12 ítems',
     mae_scale:'0 = Nada · 1 = Un poco · 2 = Bastante · 3 = Mucho',
     mae1_q:'1. Me gusta moverme o estar en contacto con la naturaleza.',
@@ -598,16 +554,15 @@ const I18N_Q = {
     mae_callout:'Has llegado al final. Pulsa "Guardar perfil" para continuar.',
     // Thanks
     thankyou_title:'Perfil creado',
-    thankyou_body1:'Tu perfil Kair ha sido guardado correctamente. Este es tu ID personal — guárdalo, lo necesitarás cada vez que quieras acceder a tus recomendaciones.',
+    thankyou_body1:'Tu perfil Kair ha sido guardado. Tienes 7 días de prueba gratuita de Kair Bloom activada. Guarda tu ID, lo necesitarás para acceder.',
     thankyou_body2:'Con este ID accedes a la app y ves tu evolución a lo largo del tiempo.',
     thankyou_btn:'Ir a la app',
   },
-  va: {
+  va:{
     headerTitle:'Crea el teu perfil',
-    headerSub:'Completa els qüestionaris per rebre recomanacions adaptades a tu. Sols tardaràs uns minuts i únicament hauràs de fer-ho una vegada.',
-    progressLabel:'Progrés',
-    stepOf:'Pas {n} de {total}',
-    btnBack:'Enrere', btnNext:'Següent', btnSave:'Guardar perfil',
+    headerSub:'Completa el formulari per rebre recomanacions adaptades a tu. Sols tardaràs uns minuts.',
+    progressLabel:'Progrés', stepOf:'Pas {n} de {total}',
+    btnBack:'Enrere', btnNext:'Següent', btnSave:'Guardar perfil', btnSkip:'Saltar aquest pas',
     statusDefault:'Les teues dades es guarden de forma segura i anònima.',
     statusSaving:'Guardant perfil...', statusOk:'Perfil guardat correctament.',
     errRequired:'Per favor, completa totes les preguntes obligatòries.',
@@ -615,17 +570,21 @@ const I18N_Q = {
     errDuplicate:'Este ID ja existeix. Tria un altre diferent.',
     errGeneral:'Error en guardar. Intenta-ho de nou.',
     alertRequired:'Per favor, completa totes les preguntes obligatòries.',
-    leg_consent:'Consentiment', consent_title:'Consentiment informat', consent_badge:'Obligatori',
-    consent_desc:'Kair recull informació sobre el teu benestar emocional, alimentació i personalitat per oferir-te recomanacions personalitzades. La teua participació és voluntària, les teues dades són anònimes i pots retirar el teu consentiment en qualsevol moment.',
-    consent_q:'Acceptes participar?', consent_yes:'Sí, accepte', consent_no:'No desitge participar',
+    optional_banner_text:'Este pas és opcional. Pots completar-lo ara o més tard des de l\'app.',
+    step_just_id:'Sols necessites el Pas 1 per entrar a l\'app. Els següents passos milloren les teues recomanacions i els pots completar després.',
     leg_general:'Dades generals', general_title:'Informació bàsica', general_badge:'~1 minut',
-    uid_label:'Tria el teu ID personal', uid_help:'Crea un codi que sols tu conega. L\'usaràs per accedir a l\'app cada dia i veure la teua evolució.',
+    uid_label:'Tria el teu ID personal', uid_help:'Crea un codi que sols tu conega. L\'usaràs per accedir a l\'app cada dia.',
     uid_placeholder:'Ex. IM2024A',
     edad_label:'Edat', genero_label:'Gènere',
     gen_h:'Home', gen_m:'Dona', gen_nb:'No binari', gen_nd:'Preferixc no dir-ho',
     pais_label:'País de residència',
+    email_label:'Correu (opcional)', email_help:'Afig el teu correu per poder recuperar el teu ID si el perds. Sols s\'usa per a açò, mai per a màrqueting.',
+    email_help_inline:'per recuperar el teu ID',
+    leg_consent:'Consentiment', consent_title:'Consentiment informat', consent_badge:'Obligatori',
+    consent_desc:'Kair recull informació sobre el teu benestar emocional, alimentació i personalitat per oferir-te recomanacions personalitzades.',
+    consent_q:'Acceptes participar?', consent_yes:'Sí, accepte', consent_no:'No desitge participar',
     leg_salud:'Salut', salud_title:'Condicions de salut', salud_badge:'Opcional',
-    salud_desc:'Esta informació és opcional i sols s\'usa per personalitzar les teues recomanacions evitant possibles interaccions. Kair no és un servei mèdic.',
+    salud_desc:'Esta informació és opcional i sols s\'usa per personalitzar les teues recomanacions.',
     salud_q:'Tens alguna condició de salut diagnosticada?',
     cond_dm:'Diabetis tipus 2', cond_hta:'Hipertensió', cond_tsh:'Hipotiroidisme',
     cond_sii:'SII (intestí irritable)', cond_fibro:'Fibromiàlgia',
@@ -639,7 +598,7 @@ const I18N_Q = {
     med_tir:'Medicació tiroidal', med_ibp:'IBP (omeprazol i similars)',
     med_none:'Cap', med_pref:'Preferixc no indicar-ho',
     med_otras_label:'Altres medicaments',
-    salud_info_box:'Esta informació sols s\'usa per evitar recomanacions que puguen interactuar amb la teua medicació. Kair no és un servei mèdic i esta informació no es compartix amb tercers.',
+    salud_info_box:'Esta informació sols s\'usa per evitar recomanacions que puguen interactuar amb la teua medicació.',
     leg_cse:'Cos i emoció', cse_title:'CSE-12 · Última setmana', cse_badge:'12 ítems',
     cse_scale:'0 = Mai · 1 = De vegades · 2 = Sovint · 3 = Quasi sempre',
     cse1_q:'1. He sentit el meu cos més tens, rígid o contret de l\'habitual.',
@@ -658,61 +617,44 @@ const I18N_Q = {
     cse_s1_0:'Mai', cse_s1_1:'De vegades', cse_s1_2:'Sovint', cse_s1_3:'Quasi sempre',
     helpbox_text:'Si estàs passant-ho malament, no has de portar-ho sol/a. A Espanya pots trucar al 024, línia gratuïta i confidencial disponible les 24 hores.',
     safetyModalTitle:'Gràcies per compartir com et sents',
-    safetyP1:'El que has marcat indica un nivell de malestar que mereix atenció. No has de portar-ho sol/a.',
-    safetyP2:'A Espanya pots trucar al 024, línia gratuïta i confidencial d\'atenció a la conducta suïcida, disponible les 24 hores.',
+    safetyP1:'El que has marcat indica un nivell de malestar que mereix atenció.',
+    safetyP2:'A Espanya pots trucar al 024, línia gratuïta i confidencial d\'atenció a la conducta suïcida.',
     safetyP3:'També pots acudir al teu centre de salut o contactar amb un professional de la psicologia.',
     safetyClose:'Tancar',
     leg_cpp:'Personalitat', cpp_title:'CPP-10 · Perfil de personalitat', cpp_badge:'10 ítems',
     cpp_scale:'0 = Gens · 1 = Poc · 2 = Bastant · 3 = Molt',
-    cpp1_q:'1. M\'agrada explorar idees i mons nous.',
-    cpp2_q:'2. Preferixc el conegut i previsible al nou.',
-    cpp3_q:'3. Soc organitzat/da i complixc amb el que em propose.',
-    cpp4_q:'4. Tendixc a deixar coses per a després o a desorganitzar-me.',
-    cpp5_q:'5. M\'energitze en contacte amb altres persones.',
-    cpp6_q:'6. Preferixc la solitud o els ambients tranquils.',
-    cpp7_q:'7. Tendixc a ser empàtic/a i a cuidar dels altres.',
-    cpp8_q:'8. Soc directe/a i de vegades poc pacient amb els altres.',
-    cpp9_q:'9. Soc tranquil/·la davant les dificultats.',
-    cpp10_q:'10. M\'afecten molt l\'estrés, les crítiques o els canvis imprevistos.',
+    cpp1_q:'1. M\'agrada explorar idees i mons nous.',cpp2_q:'2. Preferixc el conegut i previsible al nou.',
+    cpp3_q:'3. Soc organitzat/da i complixc amb el que em propose.',cpp4_q:'4. Tendixc a deixar coses per a després o a desorganitzar-me.',
+    cpp5_q:'5. M\'energitze en contacte amb altres persones.',cpp6_q:'6. Preferixc la solitud o els ambients tranquils.',
+    cpp7_q:'7. Tendixc a ser empàtic/a i a cuidar dels altres.',cpp8_q:'8. Soc directe/a i de vegades poc pacient amb els altres.',
+    cpp9_q:'9. Soc tranquil/·la davant les dificultats.',cpp10_q:'10. M\'afecten molt l\'estrés, les crítiques o els canvis imprevistos.',
     leg_cea:'Alimentació', cea_title:'CEA-10 · Estil alimentari', cea_badge:'10 ítems',
     cea_scale:'0 = Mai · 1 = De vegades · 2 = Freqüentment · 3 = Sempre · Últim mes',
-    cea1_q:'1. He consumit fruita fresca quasi cada dia.',
-    cea2_q:'2. He inclòs verdures o hortalisses en els meus menjars principals.',
-    cea3_q:'3. He usat oli d\'oliva o altres greixos saludables de forma habitual.',
-    cea4_q:'4. He menjat menjar ràpid, brioixeria o ultrapprocessats amb freqüència.',
-    cea5_q:'5. He menjat peix o marisc de forma regular.',
-    cea6_q:'6. He consumit llegums setmanalment.',
-    cea7_q:'7. He menjat carns roges o embotits amb freqüència.',
-    cea8_q:'8. He begut suficient aigua durant el dia.',
-    cea9_q:'9. He pres refrescos ensucrats o begudes energètiques habitualment.',
-    cea10_q:'10. He tingut digestions còmodes i sense molèsties intenses.',
+    cea1_q:'1. He consumit fruita fresca quasi cada dia.',cea2_q:'2. He inclòs verdures o hortalisses en els meus menjars principals.',
+    cea3_q:'3. He usat oli d\'oliva o altres greixos saludables de forma habitual.',cea4_q:'4. He menjat menjar ràpid, brioixeria o ultrapprocessats amb freqüència.',
+    cea5_q:'5. He menjat peix o marisc de forma regular.',cea6_q:'6. He consumit llegums setmanalment.',
+    cea7_q:'7. He menjat carns roges o embotits amb freqüència.',cea8_q:'8. He begut suficient aigua durant el dia.',
+    cea9_q:'9. He pres refrescos ensucrats o begudes energètiques habitualment.',cea10_q:'10. He tingut digestions còmodes i sense molèsties intenses.',
     cea_callout:'Perfil alimentari completat.',
     leg_mae:'Afinitats', mae_title:'MAE-12 · Mapa d\'afinitats emocionals', mae_badge:'12 ítems',
     mae_scale:'0 = Gens · 1 = Una mica · 2 = Bastant · 3 = Molt',
-    mae1_q:'1. M\'agrada moure\'m o estar en contacte amb la naturalesa.',
-    mae2_q:'2. Gaudixc de sensacions físiques agradables (olor, tacte, so).',
-    mae3_q:'3. M\'agrada aprendre coses noves.',
-    mae4_q:'4. Em satisfà entendre com funciona alguna cosa.',
-    mae5_q:'5. M\'agrada expressar-me mitjançant l\'art, la música o l\'escriptura.',
-    mae6_q:'6. M\'inspiren llocs o objectes amb bellesa o harmonia.',
-    mae7_q:'7. Em nodreix passar temps amb altres persones.',
-    mae8_q:'8. M\'agrada compartir els meus pensaments o emocions amb altres.',
-    mae9_q:'9. Em motiva provar coses noves i diferents.',
-    mae10_q:'10. M\'agraden els reptes xicotets o improvisar sobre la marxa.',
-    mae11_q:'11. Valor els moments de calma i silenci.',
-    mae12_q:'12. La introspecció (pensar i sentir cap a dins) em fa sentir bé.',
+    mae1_q:'1. M\'agrada moure\'m o estar en contacte amb la naturalesa.',mae2_q:'2. Gaudixc de sensacions físiques agradables (olor, tacte, so).',
+    mae3_q:'3. M\'agrada aprendre coses noves.',mae4_q:'4. Em satisfà entendre com funciona alguna cosa.',
+    mae5_q:'5. M\'agrada expressar-me mitjançant l\'art, la música o l\'escriptura.',mae6_q:'6. M\'inspiren llocs o objectes amb bellesa o harmonia.',
+    mae7_q:'7. Em nodreix passar temps amb altres persones.',mae8_q:'8. M\'agrada compartir els meus pensaments o emocions amb altres.',
+    mae9_q:'9. Em motiva provar coses noves i diferents.',mae10_q:'10. M\'agraden els reptes xicotets o improvisar sobre la marxa.',
+    mae11_q:'11. Valor els moments de calma i silenci.',mae12_q:'12. La introspecció (pensar i sentir cap a dins) em fa sentir bé.',
     mae_callout:'Has arribat al final. Prem "Guardar perfil" per a continuar.',
     thankyou_title:'Perfil creat',
-    thankyou_body1:'El teu perfil Kair ha sigut guardat correctament. Este és el teu ID personal — guarda-lo, el necessitaràs cada vegada que vulgues accedir a les teues recomanacions.',
+    thankyou_body1:'El teu perfil Kair ha sigut guardat. Tens 7 dies de prova gratuïta de Kair Bloom activada.',
     thankyou_body2:'Amb este ID accedixes a l\'app i veus la teua evolució al llarg del temps.',
     thankyou_btn:'Anar a l\'app',
   },
-  en: {
+  en:{
     headerTitle:'Create your profile',
-    headerSub:'Complete the questionnaires to receive recommendations tailored to you. It only takes a few minutes and you only need to do it once.',
-    progressLabel:'Progress',
-    stepOf:'Step {n} of {total}',
-    btnBack:'Back', btnNext:'Next', btnSave:'Save profile',
+    headerSub:'Complete the form to receive recommendations tailored to you. It only takes a few minutes.',
+    progressLabel:'Progress', stepOf:'Step {n} of {total}',
+    btnBack:'Back', btnNext:'Next', btnSave:'Save profile', btnSkip:'Skip this step',
     statusDefault:'Your data is saved securely and anonymously.',
     statusSaving:'Saving profile...', statusOk:'Profile saved successfully.',
     errRequired:'Please complete all required questions.',
@@ -720,17 +662,21 @@ const I18N_Q = {
     errDuplicate:'This ID already exists. Please choose a different one.',
     errGeneral:'Error saving. Please try again.',
     alertRequired:'Please complete all required questions.',
-    leg_consent:'Consent', consent_title:'Informed consent', consent_badge:'Required',
-    consent_desc:'Kair collects information about your emotional wellbeing, diet and personality to offer you personalised recommendations. Your participation is voluntary, your data is anonymous and you can withdraw your consent at any time.',
-    consent_q:'Do you agree to participate?', consent_yes:'Yes, I agree', consent_no:'I do not wish to participate',
+    optional_banner_text:'This step is optional. You can complete it now or later from the app.',
+    step_just_id:'You only need Step 1 to enter the app. The following steps improve your recommendations and can be completed later.',
     leg_general:'General information', general_title:'Basic information', general_badge:'~1 minute',
-    uid_label:'Choose your personal ID', uid_help:'Create a code only you know. You\'ll use it to log into the app each day and track your progress.',
+    uid_label:'Choose your personal ID', uid_help:'Create a code only you know. You\'ll use it to log into the app each day.',
     uid_placeholder:'E.g. IM2024A',
     edad_label:'Age', genero_label:'Gender',
     gen_h:'Male', gen_m:'Female', gen_nb:'Non-binary', gen_nd:'Prefer not to say',
     pais_label:'Country of residence',
+    email_label:'Email (optional)', email_help:'Add your email to recover your ID if you lose it. Only used for that, never for marketing.',
+    email_help_inline:'to recover your ID',
+    leg_consent:'Consent', consent_title:'Informed consent', consent_badge:'Required',
+    consent_desc:'Kair collects information about your emotional wellbeing, diet and personality to offer personalised recommendations.',
+    consent_q:'Do you agree to participate?', consent_yes:'Yes, I agree', consent_no:'I do not wish to participate',
     leg_salud:'Health', salud_title:'Health conditions', salud_badge:'Optional',
-    salud_desc:'This information is optional and is only used to personalise your recommendations by avoiding potential interactions. Kair is not a medical service.',
+    salud_desc:'This information is optional and only used to personalise your recommendations.',
     salud_q:'Do you have any diagnosed health conditions?',
     cond_dm:'Type 2 diabetes', cond_hta:'Hypertension', cond_tsh:'Hypothyroidism',
     cond_sii:'IBS (irritable bowel syndrome)', cond_fibro:'Fibromyalgia',
@@ -738,300 +684,393 @@ const I18N_Q = {
     cond_tdah:'ADHD', cond_none:'None', cond_pref:'Prefer not to say',
     cond_otras_label:'Other conditions not listed',
     leg_med:'Medication', med_title:'Regular medication', med_badge:'Optional',
-    med_q:'Do you take any medication on a regular basis?',
+    med_q:'Do you take any medication regularly?',
     med_ad:'Antidepressants / anxiolytics', med_ac:'Anticoagulants',
     med_is:'Immunosuppressants', med_ah:'Hormonal contraceptives',
     med_tir:'Thyroid medication', med_ibp:'PPIs (omeprazole and similar)',
     med_none:'None', med_pref:'Prefer not to say',
     med_otras_label:'Other medications',
-    salud_info_box:'This information is only used to avoid recommendations that may interact with your medication. Kair is not a medical service and this information is not shared with third parties.',
+    salud_info_box:'This information is only used to avoid recommendations that may interact with your medication.',
     leg_cse:'Body and emotion', cse_title:'CSE-12 · Last week', cse_badge:'12 items',
     cse_scale:'0 = Never · 1 = Sometimes · 2 = Often · 3 = Almost always',
-    cse1_q:'1. My body has felt more tense, rigid or contracted than usual.',
-    cse2_q:'2. My physical energy has felt low, flat or unstable.',
-    cse3_q:'3. My breathing, digestion or body rhythm has been disrupted during moments of tension.',
-    cse4_q:'4. I have found it difficult to switch off my body or mind at the end of the day.',
-    cse5_q:'5. I have noticed excessive internal noise (thoughts, tension or restlessness).',
-    cse6_q:'6. My body has felt on alert or reacting faster than normal.',
-    cse7_q:'7. My attention has been scattered or disconnected from the present moment.',
-    cse8_q:'8. I have carried out tasks with little bodily awareness or on autopilot.',
-    cse9_q:'9. I have found it hard to connect or resonate with other people as I usually do.',
-    cse10_q:'10. I have felt an emotional weight in my body (sadness, emptiness, low mood).',
-    cse11_q:'11. I have found it difficult to treat myself with gentleness or kindness.',
-    cse12_q:'12. My motivation or emotional direction has felt flat.',
-    cse_s1_q:'Confidential question: At some point this week I have felt like disappearing or disconnecting from everything.',
+    cse1_q:'1. My body has felt more tense, rigid or contracted than usual.',cse2_q:'2. My physical energy has felt low, flat or unstable.',
+    cse3_q:'3. My breathing, digestion or body rhythm has been disrupted during tension.',cse4_q:'4. I have found it difficult to switch off at the end of the day.',
+    cse5_q:'5. I have noticed excessive internal noise (thoughts, tension, restlessness).',cse6_q:'6. My body has felt on alert or reacting faster than normal.',
+    cse7_q:'7. My attention has been scattered or disconnected from the present moment.',cse8_q:'8. I have carried out tasks with little bodily awareness or on autopilot.',
+    cse9_q:'9. I have found it hard to connect with other people as I usually do.',cse10_q:'10. I have felt an emotional weight in my body (sadness, emptiness, low mood).',
+    cse11_q:'11. I have found it difficult to treat myself with gentleness.',cse12_q:'12. My motivation or emotional direction has felt flat.',
+    cse_s1_q:'Confidential: At some point this week I have felt like disappearing or disconnecting from everything.',
     cse_s1_0:'Never', cse_s1_1:'Sometimes', cse_s1_2:'Often', cse_s1_3:'Almost always',
     helpbox_text:'If you are struggling, you don\'t have to face it alone. You can call 116 123 (Samaritans, UK/IE), 988 (USA), or your local emergency number.',
     safetyModalTitle:'Thank you for sharing how you feel',
-    safetyP1:'What you have marked indicates a level of distress that deserves attention. You don\'t have to carry this alone.',
-    safetyP2:'You can call 116 123 (Samaritans, UK/IE, free and confidential, 24/7) or 988 (Suicide & Crisis Lifeline, USA).',
+    safetyP1:'What you have marked indicates a level of distress that deserves attention.',
+    safetyP2:'You can call 116 123 (Samaritans, UK/IE, free and confidential, 24/7) or 988 (USA).',
     safetyP3:'You can also visit your nearest health centre or contact a psychology professional.',
     safetyClose:'Close',
     leg_cpp:'Personality', cpp_title:'CPP-10 · Personality profile', cpp_badge:'10 items',
     cpp_scale:'0 = Not at all · 1 = A little · 2 = Quite a lot · 3 = Very much',
-    cpp1_q:'1. I enjoy exploring new ideas and worlds.',
-    cpp2_q:'2. I prefer the familiar and predictable to the new.',
-    cpp3_q:'3. I tend to be organised and follow through on what I plan.',
-    cpp4_q:'4. I tend to procrastinate or become disorganised.',
-    cpp5_q:'5. I feel energised when around other people.',
-    cpp6_q:'6. I prefer solitude or quiet environments.',
-    cpp7_q:'7. I tend to be empathetic and caring towards others.',
-    cpp8_q:'8. I am direct and sometimes impatient with others.',
-    cpp9_q:'9. I tend to remain calm when facing difficulties.',
-    cpp10_q:'10. I am strongly affected by stress, criticism or unexpected changes.',
+    cpp1_q:'1. I enjoy exploring new ideas and worlds.',cpp2_q:'2. I prefer the familiar and predictable to the new.',
+    cpp3_q:'3. I tend to be organised and follow through on plans.',cpp4_q:'4. I tend to procrastinate or become disorganised.',
+    cpp5_q:'5. I feel energised when around other people.',cpp6_q:'6. I prefer solitude or quiet environments.',
+    cpp7_q:'7. I tend to be empathetic and caring towards others.',cpp8_q:'8. I am direct and sometimes impatient with others.',
+    cpp9_q:'9. I tend to remain calm when facing difficulties.',cpp10_q:'10. I am strongly affected by stress, criticism or unexpected changes.',
     leg_cea:'Diet', cea_title:'CEA-10 · Dietary style', cea_badge:'10 items',
     cea_scale:'0 = Never · 1 = Sometimes · 2 = Frequently · 3 = Always · Past month',
-    cea1_q:'1. I have eaten fresh fruit almost every day.',
-    cea2_q:'2. I have included vegetables in my main meals.',
-    cea3_q:'3. I have used olive oil or other healthy fats regularly.',
-    cea4_q:'4. I have eaten fast food, pastries or ultra-processed foods frequently.',
-    cea5_q:'5. I have eaten fish or seafood regularly.',
-    cea6_q:'6. I have eaten pulses weekly.',
-    cea7_q:'7. I have eaten red meat or processed meats frequently.',
-    cea8_q:'8. I have drunk enough water throughout the day.',
-    cea9_q:'9. I have regularly consumed sugary drinks or energy drinks.',
-    cea10_q:'10. My digestion has been comfortable and without intense discomfort.',
+    cea1_q:'1. I have eaten fresh fruit almost every day.',cea2_q:'2. I have included vegetables in my main meals.',
+    cea3_q:'3. I have used olive oil or other healthy fats regularly.',cea4_q:'4. I have eaten fast food, pastries or ultra-processed foods frequently.',
+    cea5_q:'5. I have eaten fish or seafood regularly.',cea6_q:'6. I have eaten pulses weekly.',
+    cea7_q:'7. I have eaten red meat or processed meats frequently.',cea8_q:'8. I have drunk enough water throughout the day.',
+    cea9_q:'9. I have regularly consumed sugary drinks or energy drinks.',cea10_q:'10. My digestion has been comfortable without intense discomfort.',
     cea_callout:'Dietary profile completed.',
     leg_mae:'Affinities', mae_title:'MAE-12 · Emotional affinity map', mae_badge:'12 items',
     mae_scale:'0 = Not at all · 1 = A little · 2 = Quite a lot · 3 = Very much',
-    mae1_q:'1. I enjoy moving or being in contact with nature.',
-    mae2_q:'2. I enjoy pleasant physical sensations (smell, touch, sound).',
-    mae3_q:'3. I enjoy learning new things.',
-    mae4_q:'4. I find satisfaction in understanding how things work.',
-    mae5_q:'5. I enjoy expressing myself through art, music or writing.',
-    mae6_q:'6. I am inspired by places or objects of beauty or harmony.',
-    mae7_q:'7. Time with other people nourishes me.',
-    mae8_q:'8. I enjoy sharing my thoughts or feelings with others.',
-    mae9_q:'9. I am motivated to try new and different things.',
-    mae10_q:'10. I enjoy small challenges or improvising on the go.',
-    mae11_q:'11. I value moments of calm and quiet.',
-    mae12_q:'12. Introspection (thinking and feeling inward) makes me feel good.',
+    mae1_q:'1. I enjoy moving or being in contact with nature.',mae2_q:'2. I enjoy pleasant physical sensations (smell, touch, sound).',
+    mae3_q:'3. I enjoy learning new things.',mae4_q:'4. I find satisfaction in understanding how things work.',
+    mae5_q:'5. I enjoy expressing myself through art, music or writing.',mae6_q:'6. I am inspired by places or objects of beauty or harmony.',
+    mae7_q:'7. Time with other people nourishes me.',mae8_q:'8. I enjoy sharing my thoughts or feelings with others.',
+    mae9_q:'9. I am motivated to try new and different things.',mae10_q:'10. I enjoy small challenges or improvising on the go.',
+    mae11_q:'11. I value moments of calm and quiet.',mae12_q:'12. Introspection makes me feel good.',
     mae_callout:'You have reached the end. Press "Save profile" to continue.',
     thankyou_title:'Profile created',
-    thankyou_body1:'Your Kair profile has been saved successfully. This is your personal ID — save it, as you will need it every time you want to access your recommendations.',
-    thankyou_body2:'Use this ID to log into the app and track your progress over time.',
+    thankyou_body1:'Your Kair profile has been saved. You have a 7-day free trial of Kair Bloom activated. Save your ID, you\'ll need it to access the app.',
+    thankyou_body2:'Use this ID to log into the app and track your progress.',
     thankyou_btn:'Go to the app',
   }
 };
 
-let currentLang = 'es';
+let currentLang='es';
+function t(key){return (I18N_Q[currentLang]||I18N_Q.es)[key]||(I18N_Q.es)[key]||key;}
 
-function t(key) {
-  return (I18N_Q[currentLang] || I18N_Q.es)[key] || (I18N_Q.es)[key] || key;
+function applyI18n(){
+  const ids=Object.keys(I18N_Q.es);
+  ids.forEach(id=>{const el=document.getElementById(id);if(el) el.textContent=t(id);});
+  const uidEl=document.getElementById('uid');if(uidEl) uidEl.placeholder=t('uid_placeholder');
+  document.getElementById('prevBtn').textContent=t('btnBack');
+  const nb=document.getElementById('nextBtn');
+  if(nb) nb.textContent=isLastStep()?t('btnSave'):t('btnNext');
+  const sb=document.getElementById('skipBtn');
+  if(sb) sb.textContent=t('btnSkip');
+  document.getElementById('headerTitle').textContent=t('headerTitle');
+  document.getElementById('headerSubtitle').textContent=t('headerSub');
+  document.getElementById('stepLabel').textContent=t('stepOf').replace('{n}',currentStep+1).replace('{total}',totalSteps);
+  document.getElementById('progressLabel').textContent=t('progressLabel');
+  document.getElementById('safetyModalTitle').textContent=t('safetyModalTitle');
+  document.getElementById('safetyP1').textContent=t('safetyP1');
+  document.getElementById('safetyP2').textContent=t('safetyP2');
+  document.getElementById('safetyP3').textContent=t('safetyP3');
+  document.getElementById('safetyClose').textContent=t('safetyClose');
+  document.getElementById('helpBox').textContent=t('helpbox_text');
+  document.getElementById('email_help_inline').textContent='— '+t('email_help_inline');
 }
 
-function applyI18n() {
-  const ids = Object.keys(I18N_Q.es);
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = t(id);
-  });
-  // Placeholder especial
-  const uidEl = document.getElementById('uid');
-  if (uidEl) uidEl.placeholder = t('uid_placeholder');
-  // Botones nav
-  document.getElementById('prevBtn').textContent = t('btnBack');
-  const nb = document.getElementById('nextBtn');
-  if (nb) nb.textContent = currentStep === totalSteps - 1 ? t('btnSave') : t('btnNext');
-  document.getElementById('headerTitle').textContent = t('headerTitle');
-  document.getElementById('headerSubtitle').textContent = t('headerSub');
-  // Step label
-  document.getElementById('stepLabel').textContent = t('stepOf').replace('{n}', currentStep+1).replace('{total}', totalSteps);
-  document.getElementById('progressLabel').textContent = t('progressLabel');
-  // Safety modal
-  document.getElementById('safetyModalTitle').textContent = t('safetyModalTitle');
-  document.getElementById('safetyP1').textContent = t('safetyP1');
-  document.getElementById('safetyP2').textContent = t('safetyP2');
-  document.getElementById('safetyP3').textContent = t('safetyP3');
-  document.getElementById('safetyClose').textContent = t('safetyClose');
-  document.getElementById('helpBox').textContent = t('helpbox_text');
-}
-
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('kair_lang', lang);
-  document.documentElement.lang = lang === 'va' ? 'ca' : lang;
+function setLang(lang){
+  currentLang=lang;
+  localStorage.setItem('kair_lang',lang);
+  document.documentElement.lang=lang==='va'?'ca':lang;
   applyI18n();
 }
 
-function detectLang() {
-  const stored = localStorage.getItem('kair_lang');
-  if (stored && I18N_Q[stored]) return stored;
-  const nav = (navigator.language || 'es').toLowerCase();
-  if (nav.startsWith('ca') || nav.startsWith('va')) return 'va';
-  if (nav.startsWith('en')) return 'en';
+function detectLang(){
+  const stored=localStorage.getItem('kair_lang');
+  if(stored&&I18N_Q[stored]) return stored;
+  const nav=(navigator.language||'es').toLowerCase();
+  if(nav.startsWith('ca')||nav.startsWith('va')) return 'va';
+  if(nav.startsWith('en')) return 'en';
   return 'es';
 }
 
-// ══════════════════════════════════════════════════════════
-// FORM LOGIC
-// ══════════════════════════════════════════════════════════
-let currentStep = 0;
-const totalSteps = 7; // 0=consent,1=general,2=salud,3=cse,4=cpp,5=cea,6=mae
+// ════════════════════════════════════════
+// FORM LOGIC — Grupos X, I, N
+// ════════════════════════════════════════
+let currentStep=0;
+const totalSteps=7;
+// Grupo X: pasos 2-6 son opcionales
+const OPTIONAL_STEPS=[2,3,4,5,6];
+// Si venimos de ?step=N (perfil ya existe, completando paso diferido)
+const urlParams=new URLSearchParams(window.location.search);
+const startStep=parseInt(urlParams.get('step')||'0');
+const existingUid=urlParams.get('uid')||null; // para actualizar perfil existente
+const isUpdateMode=!!(existingUid&&startStep>0);
 
-document.addEventListener('DOMContentLoaded', async function() {
-  // Detect lang
-  currentLang = detectLang();
-  document.getElementById('langSelect').value = currentLang;
-  document.documentElement.lang = currentLang === 'va' ? 'ca' : currentLang;
+function isLastStep(){
+  // En modo actualización el último es el paso actual (solo 1 paso)
+  if(isUpdateMode) return true;
+  return currentStep===totalSteps-1;
+}
 
+function isOptionalStep(step){return OPTIONAL_STEPS.includes(step);}
+
+document.addEventListener('DOMContentLoaded',async function(){
+  currentLang=detectLang();
+  document.getElementById('langSelect').value=currentLang;
+  document.documentElement.lang=currentLang==='va'?'ca':currentLang;
   await cargarConfig();
-  applyI18n();
 
-  const form     = document.getElementById('kairForm');
-  const steps    = Array.from(document.querySelectorAll('.step'));
-  const dots     = Array.from(document.querySelectorAll('.step-dot'));
-  const prevBtn  = document.getElementById('prevBtn');
-  const nextBtn  = document.getElementById('nextBtn');
-  const statusText = document.getElementById('statusText');
-  const thankyou = document.getElementById('thankyou');
-  const navRow   = document.getElementById('navRow');
-  const helpBox  = document.getElementById('helpBox');
-  const safetyRadios = document.querySelectorAll('input[name="cse_s1"]');
-  const safetyModal  = document.getElementById('safetyModal');
-
-  function updateUI() {
-    steps.forEach((s,i) => s.classList.toggle('active', i === currentStep));
-    dots.forEach((d,i)  => d.classList.toggle('active', i === currentStep));
-    document.getElementById('stepLabel').textContent = t('stepOf').replace('{n}', currentStep+1).replace('{total}', totalSteps);
-    prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-flex';
-    nextBtn.textContent = currentStep === totalSteps - 1 ? t('btnSave') : t('btnNext');
+  // Grupo X: si venimos de ?step=N saltar directamente
+  if(isUpdateMode&&startStep>0&&startStep<totalSteps){
+    currentStep=startStep;
+    // Ocultar pasos anteriores en el form
   }
 
-  function validate(idx) {
-    const step = steps[idx];
-    for (const f of step.querySelectorAll('[required]')) {
-      if (f.type === 'radio') {
-        if (!Array.from(step.querySelectorAll(`input[name="${f.name}"]`)).some(r => r.checked)) return false;
-      } else if (!f.value) return false;
+  applyI18n();
+
+  const form=document.getElementById('kairForm');
+  const steps=Array.from(document.querySelectorAll('.step'));
+  const dots=Array.from(document.querySelectorAll('.step-dot'));
+  const prevBtn=document.getElementById('prevBtn');
+  const nextBtn=document.getElementById('nextBtn');
+  const skipBtn=document.getElementById('skipBtn');
+  const statusText=document.getElementById('statusText');
+  const thankyou=document.getElementById('thankyou');
+  const navRow=document.getElementById('navRow');
+  const helpBox=document.getElementById('helpBox');
+  const safetyRadios=document.querySelectorAll('input[name="cse_s1"]');
+  const safetyModal=document.getElementById('safetyModal');
+  const optionalBanner=document.getElementById('optionalBanner');
+
+  function updateUI(){
+    steps.forEach((s,i)=>s.classList.toggle('active',i===currentStep));
+    dots.forEach((d,i)=>d.classList.toggle('active',i===currentStep));
+    document.getElementById('stepLabel').textContent=t('stepOf').replace('{n}',currentStep+1).replace('{total}',totalSteps);
+    prevBtn.style.display=(currentStep===0||isUpdateMode)?'none':'inline-flex';
+    nextBtn.textContent=isLastStep()?t('btnSave'):t('btnNext');
+    // Grupo X: mostrar banner y botón saltar en pasos opcionales
+    if(isOptionalStep(currentStep)&&!isUpdateMode){
+      optionalBanner.textContent=t('optional_banner_text');
+      optionalBanner.classList.add('visible');
+      skipBtn.style.display='inline-flex';
+    } else {
+      optionalBanner.classList.remove('visible');
+      skipBtn.style.display='none';
+    }
+    // Mostrar nota "solo paso 1 obligatorio" en paso 1
+    if(currentStep===1&&!isUpdateMode){
+      const noteEl=document.getElementById('step1_note');
+      if(!noteEl){
+        const note=document.createElement('p');
+        note.id='step1_note';
+        note.style.cssText='font-size:0.76rem;color:#065f46;background:rgba(42,198,168,0.05);border:1px solid rgba(42,198,168,0.2);border-radius:8px;padding:8px 12px;margin-bottom:14px;line-height:1.5;';
+        note.textContent=t('step_just_id');
+        const firstFieldset=steps[1].querySelector('fieldset');
+        if(firstFieldset) firstFieldset.before(note);
+      }
+    }
+  }
+
+  function validate(idx){
+    const step=steps[idx];
+    for(const f of step.querySelectorAll('[required]')){
+      if(f.type==='radio'){
+        if(!Array.from(step.querySelectorAll(`input[name="${f.name}"]`)).some(r=>r.checked)) return false;
+      } else if(!f.value) return false;
     }
     return true;
   }
 
-  prevBtn.addEventListener('click', () => {
-    if (currentStep > 0) { currentStep--; updateUI(); }
-  });
+  prevBtn.addEventListener('click',()=>{if(currentStep>0){currentStep--;updateUI();}});
 
-  nextBtn.addEventListener('click', () => {
-    if (!validate(currentStep)) { alert(t('alertRequired')); return; }
-    if (currentStep === totalSteps - 1) {
-      if (form.querySelector('input[name="consent"]:checked')?.value !== 'si') {
-        alert(t('errConsent')); return;
+  nextBtn.addEventListener('click',()=>{
+    if(!validate(currentStep)){alert(t('alertRequired'));return;}
+    if(isLastStep()){
+      if(!isUpdateMode&&form.querySelector('input[name="consent"]:checked')?.value!=='si'){
+        alert(t('errConsent'));return;
       }
       submitForm();
     } else {
-      currentStep++;
-      updateUI();
+      currentStep++;updateUI();
     }
   });
 
-  // Safety modal para CSE item sensible
-  safetyRadios.forEach(r => r.addEventListener('change', () => {
-    const v = parseInt(r.value);
-    helpBox.style.display = v >= 1 ? 'block' : 'none';
-    if (v >= 1) safetyModal.classList.add('active');
+  // Grupo X: saltar paso opcional
+  window.skipOptionalStep=function(){
+    if(isLastStep()){submitForm();}
+    else{currentStep++;updateUI();}
+  };
+
+  safetyRadios.forEach(r=>r.addEventListener('change',()=>{
+    const v=parseInt(r.value);
+    helpBox.style.display=v>=1?'block':'none';
+    if(v>=1) safetyModal.classList.add('active');
     else safetyModal.classList.remove('active');
   }));
 
-  function getVal(name) {
-    const c = form.querySelector(`input[name="${name}"]:checked`);
-    if (c) return c.value;
-    const e = form.querySelector(`#${name}`);
-    return e ? e.value : null;
+  function getVal(name){
+    const c=form.querySelector(`input[name="${name}"]:checked`);
+    if(c) return c.value;
+    const e=form.querySelector(`#${name}`);
+    return e?e.value:null;
   }
-
-  function getCheckboxValues(name) {
-    return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+  function getCheckboxValues(name){
+    return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(cb=>cb.value);
   }
+  function n(name){return parseInt(getVal(name)||0);}
 
-  async function submitForm() {
-    nextBtn.disabled = true; prevBtn.disabled = true;
-    statusText.textContent = t('statusSaving');
+  async function submitForm(){
+    nextBtn.disabled=true;prevBtn.disabled=true;
+    statusText.textContent=t('statusSaving');
     statusText.classList.remove('ok','error');
 
-    const uid = document.getElementById('uid').value.trim();
-    const n = name => parseInt(getVal(name) || 0);
+    // Grupo X: modo actualización de pasos diferidos
+    if(isUpdateMode&&existingUid){
+      await submitUpdateMode(existingUid);
+      return;
+    }
 
-    const cseScore = ['cse1','cse2','cse3','cse4','cse5','cse6','cse7','cse8','cse9','cse10','cse11','cse12'].reduce((a,k) => a + n(k), 0);
-    const ceaScore = ['cea1','cea2','cea3','cea5','cea6','cea8'].reduce((a,k) => a + n(k), 0)
-                   - ['cea4','cea7','cea9'].reduce((a,k) => a + n(k), 0);
-    const maeScore = Array.from({length:12}, (_,i) => `mae${i+1}`).reduce((a,k) => a + n(k), 0);
-    const maeVals  = {
-      naturaleza: n('mae1') + n('mae2'),
-      intelecto:  n('mae3') + n('mae4'),
-      arte:       n('mae5') + n('mae6'),
-      social:     n('mae7') + n('mae8'),
-      exploracion:n('mae9') + n('mae10'),
-      calma:      n('mae11')+ n('mae12')
-    };
-    const maePerfil = Object.entries(maeVals).sort((a,b) => b[1]-a[1])[0][0];
+    const uid=document.getElementById('uid').value.trim();
+    const emailVal=document.getElementById('emailField')?.value?.trim()||null;
 
-    // B3: recoger condiciones y medicación
-    let condiciones = getCheckboxValues('condicion');
-    const condOtras = document.getElementById('cond_otras')?.value?.trim();
-    if (condOtras) condiciones.push(condOtras);
+    const cseScore=['cse1','cse2','cse3','cse4','cse5','cse6','cse7','cse8','cse9','cse10','cse11','cse12'].reduce((a,k)=>a+n(k),0);
+    const ceaScore=['cea1','cea2','cea3','cea5','cea6','cea8'].reduce((a,k)=>a+n(k),0)-['cea4','cea7','cea9'].reduce((a,k)=>a+n(k),0);
+    const maeScore=Array.from({length:12},(_,i)=>`mae${i+1}`).reduce((a,k)=>a+n(k),0);
+    const maeVals={naturaleza:n('mae1')+n('mae2'),intelecto:n('mae3')+n('mae4'),arte:n('mae5')+n('mae6'),social:n('mae7')+n('mae8'),exploracion:n('mae9')+n('mae10'),calma:n('mae11')+n('mae12')};
+    const maePerfil=Object.entries(maeVals).sort((a,b)=>b[1]-a[1])[0][0];
 
-    let medicacion = getCheckboxValues('medicacion');
-    const medOtras = document.getElementById('med_otras')?.value?.trim();
-    if (medOtras) medicacion.push(medOtras);
+    let condiciones=getCheckboxValues('condicion');
+    const condOtras=document.getElementById('cond_otras')?.value?.trim();
+    if(condOtras) condiciones.push(condOtras);
+    let medicacion=getCheckboxValues('medicacion');
+    const medOtras=document.getElementById('med_otras')?.value?.trim();
+    if(medOtras) medicacion.push(medOtras);
 
-    const payload = {
+    // Determinar qué pasos se completaron
+    const stepsCompleted=[];
+    // Paso 1 siempre completado
+    stepsCompleted.push(1);
+    // Verificar pasos opcionales
+    if(condiciones.length>0||document.getElementById('cond_otras')?.value) stepsCompleted.push(2);
+    if(form.querySelector('input[name="cse1"]:checked')) stepsCompleted.push(3);
+    if(form.querySelector('input[name="cpp1"]:checked')) stepsCompleted.push(4);
+    if(form.querySelector('input[name="cea1"]:checked')) stepsCompleted.push(5);
+    if(form.querySelector('input[name="mae1"]:checked')) stepsCompleted.push(6);
+
+    // Grupo N: trial de 7 días
+    const trialExpiresAt=new Date(Date.now()+7*24*60*60*1000).toISOString();
+
+    const payload={
       uid,
-      edad:    parseInt(document.getElementById('edad').value || 0),
-      genero:  getVal('genero'), // B1: campo unificado a genero (no sexo)
-      pais:    document.getElementById('pais').value || null,
-      // CSE
+      edad:parseInt(document.getElementById('edad').value||0),
+      genero:getVal('genero'),
+      pais:document.getElementById('pais').value||null,
+      // Grupo I: email opcional
+      email:emailVal||null,
+      // CSE (puede ser null si no completado)
       cse1:n('cse1'),cse2:n('cse2'),cse3:n('cse3'),cse4:n('cse4'),cse5:n('cse5'),cse6:n('cse6'),
       cse7:n('cse7'),cse8:n('cse8'),cse9:n('cse9'),cse10:n('cse10'),cse11:n('cse11'),cse12:n('cse12'),
-      cse_s1:  n('cse_s1'), cse_total: cseScore,
+      cse_s1:n('cse_s1'),cse_total:cseScore,
       // CPP
       cpp1:n('cpp1'),cpp2:n('cpp2'),cpp3:n('cpp3'),cpp4:n('cpp4'),cpp5:n('cpp5'),
       cpp6:n('cpp6'),cpp7:n('cpp7'),cpp8:n('cpp8'),cpp9:n('cpp9'),cpp10:n('cpp10'),
-      cpp_apertura:    n('cpp1') - n('cpp2'),
-      cpp_conciencia:  n('cpp3') - n('cpp4'),
-      cpp_extraversion:n('cpp5') - n('cpp6'),
-      cpp_amabilidad:  n('cpp7') - n('cpp8'),
-      cpp_neuroticismo:n('cpp10')- n('cpp9'),
+      cpp_apertura:n('cpp1')-n('cpp2'),cpp_conciencia:n('cpp3')-n('cpp4'),
+      cpp_extraversion:n('cpp5')-n('cpp6'),cpp_amabilidad:n('cpp7')-n('cpp8'),
+      cpp_neuroticismo:n('cpp10')-n('cpp9'),
       // CEA
       cea1:n('cea1'),cea2:n('cea2'),cea3:n('cea3'),cea4:n('cea4'),cea5:n('cea5'),
       cea6:n('cea6'),cea7:n('cea7'),cea8:n('cea8'),cea9:n('cea9'),cea10:n('cea10'),
-      cea_total: ceaScore,
+      cea_total:ceaScore,
       // MAE
       mae1:n('mae1'),mae2:n('mae2'),mae3:n('mae3'),mae4:n('mae4'),mae5:n('mae5'),mae6:n('mae6'),
       mae7:n('mae7'),mae8:n('mae8'),mae9:n('mae9'),mae10:n('mae10'),mae11:n('mae11'),mae12:n('mae12'),
-      mae_total: maeScore, mae_perfil: maePerfil,
-      // B3: salud y medicación
-      condiciones_salud: condiciones.length > 0 ? condiciones : null,
-      medicacion:        medicacion.length > 0  ? medicacion  : null,
+      mae_total:maeScore,mae_perfil:maePerfil,
+      // Salud
+      condiciones_salud:condiciones.length>0?condiciones:null,
+      medicacion:medicacion.length>0?medicacion:null,
       // Meta
-      riesgo:          n('cse_s1') >= 2,
-      onboarding_done: false,
-      plan:            'seed',
-      created_at:      new Date().toISOString()
+      riesgo:n('cse_s1')>=2,
+      onboarding_done:false,
+      // Grupo N: plan trial
+      plan:'bloom_trial',
+      trial_expires_at:trialExpiresAt,
+      // Grupo X: pasos completados
+      steps_completed:stepsCompleted,
+      created_at:new Date().toISOString()
     };
 
-    try {
-      await supabaseInsert('perfiles', payload);
-      statusText.textContent = t('statusOk');
+    try{
+      await supabaseInsert('perfiles',payload);
+      statusText.textContent=t('statusOk');
       statusText.classList.add('ok');
-      form.style.display = 'none'; navRow.style.display = 'none';
-      thankyou.style.display = 'block';
-      document.getElementById('thankyouId').textContent = uid;
-      // Apply i18n to thanks screen
-      document.getElementById('thankyou_title').textContent  = t('thankyou_title');
-      document.getElementById('thankyou_body1').textContent  = t('thankyou_body1');
-      document.getElementById('thankyou_body2').textContent  = t('thankyou_body2');
-      document.getElementById('thankyou_btn').textContent    = t('thankyou_btn');
-    } catch(err) {
+      form.style.display='none';navRow.style.display='none';
+      thankyou.style.display='block';
+      document.getElementById('thankyouId').textContent=uid;
+      document.getElementById('thankyou_title').textContent=t('thankyou_title');
+      document.getElementById('thankyou_body1').textContent=t('thankyou_body1');
+      document.getElementById('thankyou_body2').textContent=t('thankyou_body2');
+      document.getElementById('thankyou_btn').textContent=t('thankyou_btn');
+      if(typeof umami!=='undefined') umami.track('cuestionario_completado');
+    }catch(err){
       console.error(err);
-      const msg = err.message?.includes('duplicate') ? t('errDuplicate') : t('errGeneral');
-      statusText.textContent = msg;
+      const msg=err.message?.includes('duplicate')?t('errDuplicate'):t('errGeneral');
+      statusText.textContent=msg;
       statusText.classList.add('error');
-      nextBtn.disabled = false; prevBtn.disabled = false;
+      nextBtn.disabled=false;prevBtn.disabled=false;
+    }
+  }
+
+  // Grupo X: actualizar perfil existente con pasos diferidos
+  async function submitUpdateMode(uid){
+    const stepNum=startStep;
+    let updateData={};
+    const stepsCompleted=[];
+
+    if(stepNum===2){
+      let condiciones=getCheckboxValues('condicion');
+      const condOtras=document.getElementById('cond_otras')?.value?.trim();
+      if(condOtras) condiciones.push(condOtras);
+      let medicacion=getCheckboxValues('medicacion');
+      const medOtras=document.getElementById('med_otras')?.value?.trim();
+      if(medOtras) medicacion.push(medOtras);
+      updateData={condiciones_salud:condiciones.length>0?condiciones:null,medicacion:medicacion.length>0?medicacion:null};
+      stepsCompleted.push(2);
+    } else if(stepNum===3){
+      const cseScore=['cse1','cse2','cse3','cse4','cse5','cse6','cse7','cse8','cse9','cse10','cse11','cse12'].reduce((a,k)=>a+n(k),0);
+      updateData={cse1:n('cse1'),cse2:n('cse2'),cse3:n('cse3'),cse4:n('cse4'),cse5:n('cse5'),cse6:n('cse6'),cse7:n('cse7'),cse8:n('cse8'),cse9:n('cse9'),cse10:n('cse10'),cse11:n('cse11'),cse12:n('cse12'),cse_s1:n('cse_s1'),cse_total:cseScore,riesgo:n('cse_s1')>=2};
+      stepsCompleted.push(3);
+    } else if(stepNum===4){
+      updateData={cpp1:n('cpp1'),cpp2:n('cpp2'),cpp3:n('cpp3'),cpp4:n('cpp4'),cpp5:n('cpp5'),cpp6:n('cpp6'),cpp7:n('cpp7'),cpp8:n('cpp8'),cpp9:n('cpp9'),cpp10:n('cpp10'),cpp_apertura:n('cpp1')-n('cpp2'),cpp_conciencia:n('cpp3')-n('cpp4'),cpp_extraversion:n('cpp5')-n('cpp6'),cpp_amabilidad:n('cpp7')-n('cpp8'),cpp_neuroticismo:n('cpp10')-n('cpp9')};
+      stepsCompleted.push(4);
+    } else if(stepNum===5){
+      const ceaScore=['cea1','cea2','cea3','cea5','cea6','cea8'].reduce((a,k)=>a+n(k),0)-['cea4','cea7','cea9'].reduce((a,k)=>a+n(k),0);
+      updateData={cea1:n('cea1'),cea2:n('cea2'),cea3:n('cea3'),cea4:n('cea4'),cea5:n('cea5'),cea6:n('cea6'),cea7:n('cea7'),cea8:n('cea8'),cea9:n('cea9'),cea10:n('cea10'),cea_total:ceaScore};
+      stepsCompleted.push(5);
+    } else if(stepNum===6){
+      const maeScore=Array.from({length:12},(_,i)=>`mae${i+1}`).reduce((a,k)=>a+n(k),0);
+      const maeVals={naturaleza:n('mae1')+n('mae2'),intelecto:n('mae3')+n('mae4'),arte:n('mae5')+n('mae6'),social:n('mae7')+n('mae8'),exploracion:n('mae9')+n('mae10'),calma:n('mae11')+n('mae12')};
+      const maePerfil=Object.entries(maeVals).sort((a,b)=>b[1]-a[1])[0][0];
+      updateData={mae1:n('mae1'),mae2:n('mae2'),mae3:n('mae3'),mae4:n('mae4'),mae5:n('mae5'),mae6:n('mae6'),mae7:n('mae7'),mae8:n('mae8'),mae9:n('mae9'),mae10:n('mae10'),mae11:n('mae11'),mae12:n('mae12'),mae_total:maeScore,mae_perfil:maePerfil};
+      stepsCompleted.push(6);
+    }
+
+    try{
+      // Necesitamos también actualizar steps_completed — usar JSONB append
+      // Como no podemos hacer JSONB append fácilmente desde REST, hacemos primero un GET
+      const getUrl=`${SUPABASE_URL}/rest/v1/perfiles?uid=eq.${encodeURIComponent(uid)}&select=steps_completed&limit=1`;
+      const gr=await fetch(getUrl,{headers:{apikey:SUPABASE_ANON_KEY,Authorization:`Bearer ${SUPABASE_ANON_KEY}`}});
+      const gd=await gr.json();
+      const existing_steps=gd&&gd[0]?.steps_completed||[];
+      const merged=[...new Set([...existing_steps,...stepsCompleted])];
+      updateData.steps_completed=merged;
+
+      await supabaseUpdate('perfiles',{uid},updateData);
+      statusText.textContent=t('statusOk');
+      statusText.classList.add('ok');
+      form.style.display='none';navRow.style.display='none';
+      thankyou.style.display='block';
+      document.getElementById('thankyouId').textContent=uid;
+      document.getElementById('thankyou_title').textContent=t('thankyou_title');
+      document.getElementById('thankyou_body1').textContent=t('statusOk');
+      document.getElementById('thankyou_body2').textContent=t('thankyou_body2');
+      document.getElementById('thankyou_btn').textContent=t('thankyou_btn');
+    }catch(err){
+      console.error(err);
+      statusText.textContent=t('errGeneral');
+      statusText.classList.add('error');
+      nextBtn.disabled=false;
     }
   }
 
   updateUI();
+  // Si modo actualización, mostrar solo el paso correcto
+  if(isUpdateMode) updateUI();
 });
 </script>
 </body>
